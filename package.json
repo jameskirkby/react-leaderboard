@@ -1,7 +1,7 @@
 {
   "name": "pitchero-leaderboard",
   "description": "Trial task for Pitchero",
-  "main": "js/main.js",
+  "main": "js/app.js",
   "author": "James Kirkby <james@jkirkby.co.uk>",
   "devDependencies": {
     "browser-sync": "^2.7.13",
@@ -26,9 +26,7 @@
     "gulp-rename": "~1.2.2",
     "gulp-sass": "^2.3.2",
     "gulp-util": "~3.0.6",
-    "moment": "^2.16.0",
     "react": "^15.3.1",
-    "react-datepicker": "^0.34.0",
     "react-dom": "^15.3.1",
     "react-select": "^1.0.0-rc.2",
     "webpack": "^1.13.1",

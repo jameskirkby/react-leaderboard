@@ -1,9 +1,9 @@
 {
-  "name": "whatsapp-reader",
+  "name": "pitchhero-leaderboard",
   "authors": [
     "James Kirkby <james@jkirkby.co.uk>"
   ],
-  "description": "WhatsApp Chat Log Reader and Filterer",
+  "description": "Trial task for Pitchero",
   "private": true,
   "ignore": [
     "**/.*",

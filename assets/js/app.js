@@ -19,15 +19,15 @@ class PitcheroLeaderboard extends React.Component {
 
     super();
 
+    // assign some defaults to the state
     this.state = {
       leaderboardHeaders: defaultData.headers,
       leaderboardRows: defaultData.body,
       selectedTeam: null,
       formElementsDisabled: true,
-      editsMade: false,
     };
 
-
+    // bind custom functions
     this.changePoints = this.changePoints.bind(this);
 
     this.getTeamPointsFromName = this.getTeamPointsFromName.bind(this);
@@ -39,26 +39,22 @@ class PitcheroLeaderboard extends React.Component {
 
   cloneLeaderboards() {
 
+    // simple clone, instead of referencing the original object
+    // because we're sorting the data in different ways (the dropdown displays
+    // the names in alphabetical order, whereas the actual leaderboard table
+    // displays the rows by their number or points, then their original position)
+    // without doing this, the leaderboardRows variable in the state is displayed
+    // in the wrong order in one of those places
     return JSON.parse(JSON.stringify(this.state.leaderboardRows));
-
-  }
-
-  leaderboardSortedByNumber() {
-
-    let rows = this.cloneLeaderboards();
-
-    rows.sort((a, b) => {
-      return a.number - b.number;
-    });
-
-    return rows;
 
   }
 
   leaderboardSortedByName() {
 
+    // get the rows
     let rows = this.cloneLeaderboards();
 
+    // sort the rows, based on the name of the team
     rows.sort((a, b) => {
 
       a = a.team.toLowerCase();
@@ -72,7 +68,7 @@ class PitcheroLeaderboard extends React.Component {
         return 1;
       }
 
-      // team names must be equal
+      // team names must be equal, which would be weird
       return 0;
 
     });
@@ -81,10 +77,14 @@ class PitcheroLeaderboard extends React.Component {
 
   }
 
-  leaderboardSortedByPointsThenNumber() {
+  leaderboardRowsSortedByPointsThenNumber() {
 
-    let rows = this.cloneLeaderboards();
+    // get the rows
+    let rows = this.cloneLeaderboards(),
+        tableRows = [];
 
+    // sort the rows, based on the points
+    // if the points are equal, sort the rows based on their current position
     rows.sort((a, b) => {
 
       const points = b.points - a.points;
@@ -97,35 +97,55 @@ class PitcheroLeaderboard extends React.Component {
 
     });
 
+    // update the value for each position, now that it's been sorted
     for(let i in rows) {
       rows[i].number = parseInt(i) + 1;
     }
 
-    return rows;
+    // these are only to be used in the table, so we may as well generate
+    // the HTML in this function
+    rows.forEach((row) => {
+      tableRows.push(
+        <tr key={row.number} className="leaderboard__row leaderboard__row--body">
+          <td className="leaderboard__cell leaderboard__cell--body text--left">{row.number}</td>
+          <td className="leaderboard__cell leaderboard__cell--body text--left">{row.team}</td>
+          <td className="leaderboard__cell leaderboard__cell--body leaderboard__cell--body text--center">{row.played}</td>
+          <td className="leaderboard__cell leaderboard__cell--body text--center">{row.points}</td>
+        </tr>
+      );
+    });
+
+    return tableRows;
 
   }
 
   changePoints(type, direction, value) {
 
-    let currentLeaderboard = this.state.leaderboardRows;
+    // loop through all the rows to find the one we want to edit
+    for (let i in this.state.leaderboardRows) {
 
-    for (let i in currentLeaderboard) {
+      if (this.state.leaderboardRows[i].team === this.state.selectedTeam) {
 
-      if (currentLeaderboard[i].team === this.state.selectedTeam) {
-
+        // this function will update the score using both the buttons
+        // and the number input, so the `type` paramater tells us how to update
+        // 'change' is used by the buttons, 'adjust' is used by the input
         if(type === 'change') {
 
+          // each button passes through another paramater, the `direction` param
+          // which tells us to increase or decrease the score
           if(direction === 'increase') {
 
-            currentLeaderboard[i].points++;
+            this.state.leaderboardRows[i].points++;
 
           } else {
 
-            currentLeaderboard[i].points--;
+            this.state.leaderboardRows[i].points--;
 
           }
         } else {
 
+          // if we're adjusting, using the number input, just use the value
+          // that's been passed through
           this.state.leaderboardRows[i].points = value;
 
         }
@@ -136,23 +156,26 @@ class PitcheroLeaderboard extends React.Component {
 
     }
 
+    // update the leaderboardRows value in the state
     this.setState({
-      leaderboard: currentLeaderboard,
-      editsMade: true,
+      leaderboardRows: this.state.leaderboardRows,
     });
 
   }
 
   getTeamPointsFromName() {
 
+    // if a team hasn't been selected, display an empty value in the number input
     if(this.state.selectedTeam == null) {
       return '';
     }
 
+    // loop through all the teams to find the current one
     for (let i in this.state.leaderboardRows) {
 
       if (this.state.leaderboardRows[i].team === this.state.selectedTeam) {
 
+        // return the current points for that team
         return this.state.leaderboardRows[i].points;
 
       }
@@ -163,38 +186,17 @@ class PitcheroLeaderboard extends React.Component {
 
   handleSelectChange(team) {
 
-    let formElementsDisabled;
-
-    if(team !== null) {
-      formElementsDisabled = false;
-    } else {
-      formElementsDisabled = true;
-    }
-
+    // update the current selected team when the dropdown changes
+    // if no team is selected, then null is used for the `team` parameter
+    // disable the other form elements if a team hasn't been selected
     this.setState({
       selectedTeam: team,
-      formElementsDisabled: formElementsDisabled,
+      formElementsDisabled: !(team !== null),
     });
 
   }
 
   render() {
-
-    let leaderboardRows = (this.state.editsMade ? this.leaderboardSortedByPointsThenNumber() : this.leaderboardSortedByNumber()),
-        leaderboardNames = this.leaderboardSortedByName();
-
-    let rows = [];
-
-    leaderboardRows.forEach((row) => {
-      rows.push(
-        <tr key={row.number} className="leaderboard__row leaderboard__row--body">
-          <td className="leaderboard__cell leaderboard__cell--body text--left">{row.number}</td>
-          <td className="leaderboard__cell leaderboard__cell--body text--left">{row.team}</td>
-          <td className="leaderboard__cell leaderboard__cell--body leaderboard__cell--body text--center">{row.played}</td>
-          <td className="leaderboard__cell leaderboard__cell--body text--center">{row.points}</td>
-        </tr>
-      );
-    });
 
     return (
       <div>
@@ -204,7 +206,7 @@ class PitcheroLeaderboard extends React.Component {
             <Select
               placeholder="Choose..."
               simpleValue
-              options={leaderboardNames.map((row) => {
+              options={this.leaderboardSortedByName().map((row) => {
                 return {
                     label: row.team,
                     value: row.team,
@@ -257,7 +259,7 @@ class PitcheroLeaderboard extends React.Component {
             </tr>
           </thead>
           <tbody className="leaderboard__body">
-            {rows}
+            {this.leaderboardRowsSortedByPointsThenNumber()}
           </tbody>
         </table>
       </div>
@@ -266,7 +268,6 @@ class PitcheroLeaderboard extends React.Component {
   }
 
 }
-
 
 // render the app to the view
 ReactDOM.render(<PitcheroLeaderboard/>, document.getElementById('app'));
