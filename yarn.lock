@@ -977,7 +977,7 @@ circular-json@^0.3.0:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/circular-json/-/circular-json-0.3.1.tgz#be8b36aefccde8b3ca7aa2d6afc07a37242c0d2d"
 
-classnames@^2.2.4, classnames@^2.2.5:
+classnames@^2.2.4:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
@@ -3100,10 +3100,6 @@ mkdirp@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.3.0.tgz#1bbf5ab1ba827af23575143490426455f481fe1e"
 
-moment@^2.13.0, moment@^2.16.0:
-  version "2.16.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.16.0.tgz#f38f2c97c9889b0ee18fc6cc392e1e443ad2da8e"
-
 ms@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
@@ -3655,15 +3651,6 @@ rc@~1.1.6:
     minimist "^1.2.0"
     strip-json-comments "~1.0.4"
 
-react-datepicker@^0.34.0:
-  version "0.34.0"
-  resolved "https://registry.yarnpkg.com/react-datepicker/-/react-datepicker-0.34.0.tgz#177cc1e1ce94c12995311c134a9d45753e11789f"
-  dependencies:
-    classnames "^2.2.5"
-    moment "^2.13.0"
-    react-onclickoutside "^4.8.0"
-    tether "^1.3.2"
-
 react-dom@^15.3.1:
   version "15.4.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.4.0.tgz#6a97a69000966570db48c746bc4b7b0ca50d1534"
@@ -3675,12 +3662,6 @@ react-dom@^15.3.1:
 react-input-autosize@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-input-autosize/-/react-input-autosize-1.1.0.tgz#3fe1ac832387d8abab85f6051ceab1c9e5570853"
-
-react-onclickoutside@^4.8.0:
-  version "4.9.0"
-  resolved "https://registry.yarnpkg.com/react-onclickoutside/-/react-onclickoutside-4.9.0.tgz#2908c3136e244102bea5e5437a838a528d5d2995"
-  dependencies:
-    object-assign "^4.0.1"
 
 react-select@^1.0.0-rc.2:
   version "1.0.0-rc.2"
@@ -4352,10 +4333,6 @@ tar@^2.0.0, tar@~2.2.1:
     block-stream "*"
     fstream "^1.0.2"
     inherits "2"
-
-tether@^1.3.2:
-  version "1.3.7"
-  resolved "https://registry.yarnpkg.com/tether/-/tether-1.3.7.tgz#65578104741694f9672c808eae04a9adae7b0304"
 
 text-table@~0.2.0:
   version "0.2.0"
