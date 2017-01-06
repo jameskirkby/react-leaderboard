@@ -3,7 +3,7 @@
  * James Kirkby 2017 <james@jkirkby.co.uk>
  */
 
-// import in dependancies
+// import dependancies
 import React from 'react';
 import ReactDOM from 'react-dom';
 
