@@ -1,0 +1,25 @@
+{
+    "extends": "eslint:recommended",
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "parserOptions": {
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "modules": true,
+            "jsx": true
+        },
+    },
+    "rules": {
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "comma-dangle": ["error", "always-multiline"],
+        "linebreak-style": ["error", "unix"],
+        "react/jsx-uses-react": "error",
+        "react/jsx-uses-vars": "error"
+    },
+    "plugins": [
+        "react"
+    ]
+}

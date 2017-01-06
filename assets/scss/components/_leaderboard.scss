@@ -1,0 +1,27 @@
+.leaderboard {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+    .leaderboard__head {
+        border-bottom: 1px solid #d0d0d0;
+    }
+
+    .leaderboard__body {
+
+    }
+
+        .leaderboard__row {
+
+        }
+
+        .leaderboard__row--body {
+            &:nth-child(odd) {
+                background-color: #f2f2f2;
+            }
+        }
+
+            .leaderboard__cell {
+                padding: 15px 10px;
+            }

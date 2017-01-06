@@ -1,0 +1,19 @@
+{
+  "name": "whatsapp-reader",
+  "authors": [
+    "James Kirkby <james@jkirkby.co.uk>"
+  ],
+  "description": "WhatsApp Chat Log Reader and Filterer",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "inuit-normalize.css": "~3.0.2",
+    "nimbus": "~1.2.1"
+  }
+}

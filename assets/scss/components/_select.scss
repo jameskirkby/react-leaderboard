@@ -1,0 +1,56 @@
+.Select-control {
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid #9e9e9e;
+    height: 47px;
+
+    &:hover {
+        box-shadow: none;
+    }
+}
+
+.is-focused {
+    &:not(.is-open) {
+        > .Select-control {
+            border-bottom-color: $primary-colour;
+            box-shadow: 0 1px 0 0 $primary-colour;
+        }
+    }
+}
+
+.Select-option {
+    &.is-focused {
+        background-color: lighten($primary-colour, 68%);
+    }
+}
+
+.Select-placeholder {
+    top: 6px;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.Select-input {
+    height: 47px;
+    padding-left: 0;
+
+    > input {
+        padding: 14px 0 18px;
+        left: 0;
+    }
+}
+
+.Select-menu-outer {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    width: calc(100% - 1px);
+}
+
+.Select--single {
+    > .Select-control {
+        .Select-value {
+            padding-left: 0;
+            line-height: 48px;
+        }
+    }
+}

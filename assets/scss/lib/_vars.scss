@@ -1,0 +1,17 @@
+/* Fonts */
+$font-primary: 'Roboto', Helvetica, sans-serif;
+
+$base-font-family: $font-primary;
+$base-font-size: 16px;
+$base-line-height: 25px;
+
+/* Spacing */
+$spacing: ($base-line-height / $base-font-size) * 1rem;
+
+
+/* Colours */
+$body-text: #333;
+$primary-colour: #085a7f;
+
+/* Transitions */
+$transition-duration: .3s;
