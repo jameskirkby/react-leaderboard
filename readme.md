@@ -1,4 +1,4 @@
-# Pitchero Leaderboard
+# React Leaderboard
 
 Leaderboard written in React
 
